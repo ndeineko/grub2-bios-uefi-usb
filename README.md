@@ -91,7 +91,7 @@ Now, find the device file for your usb drive. Here, the file is `/dev/sdX`. Repl
 
 `touch /mnt/boot/grub/grub.cfg`
 
-## Example grub.cfg with Xubuntu 17.10 Live
+## Example grub.cfg with Xubuntu 18.04 Live
 (skip this if you already have a working grub.cfg for the usb drive)
 
 ###### Create a folder for cd images :
@@ -100,19 +100,19 @@ Now, find the device file for your usb drive. Here, the file is `/dev/sdX`. Repl
 
 ###### Create a folder for the OS files :
 
-`mkdir /mnt/isos/xubuntu17_10-i386`
+`mkdir /mnt/isos/xubuntu18_04-i386`
 
-###### Download an Ubuntu cd image (for example: [Xubuntu 17.10 32-bit](http://cdimages.ubuntu.com/xubuntu/releases/17.10/release/xubuntu-17.10.1-desktop-i386.iso)) :
+###### Download an Ubuntu cd image (for example: [Xubuntu 18.04 32-bit](http://cdimages.ubuntu.com/xubuntu/releases/18.04.1/release/xubuntu-18.04-desktop-i386.iso)) :
 
 *Note: make sure there is enough space on the usb drive.*
 
-`wget --directory-prefix=/mnt/isos/xubuntu17_10-i386 http://cdimages.ubuntu.com/xubuntu/releases/17.10/release/xubuntu-17.10.1-desktop-i386.iso`
+`wget --directory-prefix=/mnt/isos/xubuntu18_04-i386 http://cdimages.ubuntu.com/xubuntu/releases/18.04.1/release/xubuntu-18.04-desktop-i386.iso`
 
 ###### Extract `vmlinuz` and `initrd` from the iso archive :
 
-`isoinfo -i /mnt/isos/xubuntu17_10-i386/*.iso -x /CASPER/VMLINUZ. > /mnt/isos/xubuntu17_10-i386/vmlinuz`
+`isoinfo -i /mnt/isos/xubuntu18_04-i386/*.iso -x "/casper/vmlinuz.;1" > /mnt/isos/xubuntu18_04-i386/vmlinuz`
 
-`isoinfo -i /mnt/isos/xubuntu17_10-i386/*.iso -x /CASPER/INITRD.LZ > /mnt/isos/xubuntu17_10-i386/initrd.lz`
+`isoinfo -i /mnt/isos/xubuntu18_04-i386/*.iso -x "/casper/initrd.lz;1" > /mnt/isos/xubuntu18_04-i386/initrd.lz`
 
 ###### Edit grub.cfg :
 
@@ -121,10 +121,10 @@ Now, find the device file for your usb drive. Here, the file is `/dev/sdX`. Repl
 ###### Write or paste something like this :
 
 ````
-menuentry 'Xubuntu 17.10 i386'{
-	search --set=root --file /isos/xubuntu17_10-i386/vmlinuz
-	linux /isos/xubuntu17_10-i386/vmlinuz locale=fr_FR console-setup/layoutcode=fr boot=casper iso-scan/filename=/isos/xubuntu17_10-i386/xubuntu-17.10.1-desktop-i386.iso quiet --
-	initrd /isos/xubuntu17_10-i386/initrd.lz
+menuentry 'Xubuntu 18.04 i386'{
+	search --set=root --file /isos/xubuntu18_04-i386/vmlinuz
+	linux /isos/xubuntu18_04-i386/vmlinuz locale=fr_FR console-setup/layoutcode=fr boot=casper iso-scan/filename=/isos/xubuntu18_04-i386/xubuntu-18.04-desktop-i386.iso quiet --
+	initrd /isos/xubuntu18_04-i386/initrd.lz
 }
 ````
 
