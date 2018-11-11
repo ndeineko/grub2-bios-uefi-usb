@@ -12,7 +12,7 @@ Depending on the system, `/usr/lib/grub/` will contain one or more of the follow
 
 The `x86_64-efi`, `i386-pc` and `i386-efi` folders need to be present in order to install the corresponding bootloader on the usb drive.
 
-###### Install them using the package manager, for instance on Ubuntu:
+###### Install them using the package manager, for instance on Ubuntu :
 
 `sudo apt install grub-pc-bin grub-efi-ia32-bin grub-efi-amd64-bin`
 
@@ -81,12 +81,6 @@ Now, find the device file for your usb drive. Here, the file is `/dev/sdX`. Repl
 
 `sudo grub-install --removable --boot-directory=/mnt/boot --efi-directory=/mnt --target=i386-efi /dev/sdX`
 
-###### Create an empty file `/.disk/info` to avoid issues with some grub versions :
-
-`mkdir /mnt/.disk`
-
-`touch /mnt/.disk/info`
-
 ###### Create a grub.cfg file :
 
 `touch /mnt/boot/grub/grub.cfg`
@@ -146,5 +140,3 @@ menuentry 'Xubuntu 18.04 i386'{
 ###### Unmount the filesystem :
 
 `sudo umount /mnt`
-
-...
