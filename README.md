@@ -26,27 +26,27 @@ Now, find the device file for your usb drive. Here, the file is `/dev/sdX`. Repl
 
 `sudo fdisk /dev/sdX`
 
-###### Enter the following keys one line at a time (THIS WILL ERASE ALL DATA FROM THE SELECTED DRIVE!) ... :
+###### Press the following keys (THIS WILL ERASE ALL DATA FROM THE SELECTED DRIVE!) :
 
-`o # Create a new empty DOS partition table`
+`o` `<enter>` # Create a new empty DOS partition table
 
-`n # Create a new partition`
+`n` `<enter>` # Create a new partition
 
-`p # Select primary partition type`
+`p` `<enter>` # Select primary partition type
 
-`1 # Set partition number to 1`
+`1` `<enter>` # Set partition number to 1
 
-`<enter> # Start partition at the first possible sector (default)`
+`<enter>` # Start partition at the first possible sector (default)
 
-`<enter> # Set partition end to the last possible sector (default)`
+`<enter>` # Set partition end to the last possible sector (default)
 
-`t # Change partition type`
+`t` `<enter>` # Change partition type
 
-`ef # Set partition type to EFI (FAT-12/16/32)`
+`e` `f` `<enter>` # Set partition type to EFI (FAT-12/16/32)
 
-`a # Enable the bootable flag on partition 1`
+`a` `<enter>` # Enable the bootable flag on partition 1
 
-`w # Write the partition table`
+`w` `<enter>` # Write the partition table
 
 ###### Create a fresh filesystem in the newly created partition :
 
