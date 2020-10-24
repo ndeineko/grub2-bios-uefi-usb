@@ -83,17 +83,17 @@ Now, find the device file for your usb drive. Here, the file is `/dev/sdX`. Repl
 
 `mkdir /mnt/isos/xubuntu18_04-i386`
 
-###### Download an Ubuntu cd image (for example: [Xubuntu 18.04 32-bit](http://cdimages.ubuntu.com/xubuntu/releases/18.04.1/release/xubuntu-18.04-desktop-i386.iso)) :
+###### Download an Ubuntu cd image (for example: [Xubuntu 18.04 32-bit](http://cdimages.ubuntu.com/xubuntu/releases/bionic/release/xubuntu-18.04.5-desktop-i386.iso)) :
 
 *Note: make sure there is enough space on the usb drive.*
 
-`wget --directory-prefix=/mnt/isos/xubuntu18_04-i386 http://cdimages.ubuntu.com/xubuntu/releases/18.04.1/release/xubuntu-18.04-desktop-i386.iso`
+`wget --directory-prefix=/mnt/isos/xubuntu18_04-i386 http://cdimages.ubuntu.com/xubuntu/releases/bionic/release/xubuntu-18.04.5-desktop-i386.iso`
 
 ###### Extract `vmlinuz` and `initrd` from the iso archive :
 
 `isoinfo -i /mnt/isos/xubuntu18_04-i386/*.iso -x "/casper/vmlinuz.;1" > /mnt/isos/xubuntu18_04-i386/vmlinuz`
 
-`isoinfo -i /mnt/isos/xubuntu18_04-i386/*.iso -x "/casper/initrd.lz;1" > /mnt/isos/xubuntu18_04-i386/initrd.lz`
+`isoinfo -i /mnt/isos/xubuntu18_04-i386/*.iso -x "/casper/initrd.;1" > /mnt/isos/xubuntu18_04-i386/initrd.lz`
 
 ###### Edit grub.cfg :
 
@@ -104,7 +104,7 @@ Now, find the device file for your usb drive. Here, the file is `/dev/sdX`. Repl
 ````
 menuentry 'Xubuntu 18.04 i386'{
 	search --set=root --file /isos/xubuntu18_04-i386/vmlinuz
-	linux /isos/xubuntu18_04-i386/vmlinuz locale=fr_FR console-setup/layoutcode=fr boot=casper iso-scan/filename=/isos/xubuntu18_04-i386/xubuntu-18.04-desktop-i386.iso quiet --
+	linux /isos/xubuntu18_04-i386/vmlinuz locale=fr_FR console-setup/layoutcode=fr boot=casper iso-scan/filename=/isos/xubuntu18_04-i386/xubuntu-18.04.5-desktop-i386.iso quiet --
 	initrd /isos/xubuntu18_04-i386/initrd.lz
 }
 ````
