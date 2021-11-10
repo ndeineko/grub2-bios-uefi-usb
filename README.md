@@ -79,21 +79,11 @@ Now, find the device file for your usb drive. Here, the file is `/dev/sdX`. Repl
 
 `mkdir /mnt/isos`
 
-###### Create a folder for the OS files :
-
-`mkdir /mnt/isos/xubuntu18_04-i386`
-
 ###### Download an Ubuntu cd image (for example: [Xubuntu 18.04 32-bit](http://cdimages.ubuntu.com/xubuntu/releases/bionic/release/xubuntu-18.04.5-desktop-i386.iso)) :
 
 *Note: make sure there is enough space on the usb drive.*
 
-`wget --directory-prefix=/mnt/isos/xubuntu18_04-i386 http://cdimages.ubuntu.com/xubuntu/releases/bionic/release/xubuntu-18.04.5-desktop-i386.iso`
-
-###### Extract `vmlinuz` and `initrd` from the iso archive :
-
-`isoinfo -i /mnt/isos/xubuntu18_04-i386/*.iso -x "/casper/vmlinuz.;1" > /mnt/isos/xubuntu18_04-i386/vmlinuz`
-
-`isoinfo -i /mnt/isos/xubuntu18_04-i386/*.iso -x "/casper/initrd.;1" > /mnt/isos/xubuntu18_04-i386/initrd.lz`
+`wget --directory-prefix=/mnt/isos http://cdimages.ubuntu.com/xubuntu/releases/bionic/release/xubuntu-18.04.5-desktop-i386.iso`
 
 ###### Edit grub.cfg :
 
@@ -103,18 +93,21 @@ Now, find the device file for your usb drive. Here, the file is `/dev/sdX`. Repl
 
 ````
 menuentry 'Xubuntu 18.04 i386'{
-	search --set=root --file /isos/xubuntu18_04-i386/vmlinuz
-	linux /isos/xubuntu18_04-i386/vmlinuz locale=fr_FR console-setup/layoutcode=fr boot=casper iso-scan/filename=/isos/xubuntu18_04-i386/xubuntu-18.04.5-desktop-i386.iso quiet --
-	initrd /isos/xubuntu18_04-i386/initrd.lz
+	set isofile="/isos/xubuntu-18.04.5-desktop-i386.iso"
+	#search --set=root --file $isofile
+	#rmmod tpm #uncomment if grub version is 2.04 in UEFI mode (see https://bugs.launchpad.net/ubuntu/+source/grub2/+bug/1851311)
+	loopback isoloop $isofile
+	linux (isoloop)/casper/vmlinuz locale=fr_FR console-setup/layoutcode=fr boot=casper iso-scan/filename=$isofile quiet --
+	initrd (isoloop)/casper/initrd
 }
 ````
 
 *Notes :*
-* *The search command on the second line is only useful if you install the bootloader and the OS files on different partitions.*
+* *The search command on the third line is only useful if you install the bootloader and the OS files on different partitions.*
 * *Remove or change the value of the `locale` parameter to set the language of the live system.*
 * *Remove or change the value of the `console-setup/layoutcode` parameter to change the keyboard layout.*
 
-###### Save grub.cfg (in nano) :
+###### Save grub.cfg (in nano) and exit :
 
 `CTRL+O`
 
