@@ -58,7 +58,7 @@ Now, find the device file for your usb drive. Here, the file is `/dev/sdX`. Repl
 
 ###### Write the MBR and install the grub files required for legacy BIOS boot on the drive :
 
-`sudo grub-install --no-floppy --boot-directory=/mnt/boot --target=i386-pc /dev/sdX`
+`sudo grub-install --no-floppy --boot-directory=/mnt/boot --target=i386-pc --force /dev/sdX`
 
 ###### Install `/EFI/BOOT/BOOTX64.EFI` and other grub files required to load grub from a 64-bit UEFI firmware :
 
