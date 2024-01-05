@@ -40,6 +40,8 @@ Now, find the device file for your usb drive. Here, the file is `/dev/sdX`. Repl
 
 `<enter>` # Set partition end to the last possible sector (default)
 
+*Note: if fdisk (newer versions only) asks whether the partition signature should be deleted, then answer yes.*
+
 `t` `<enter>` # Change partition type
 
 `e` `f` `<enter>` # Set partition type to EFI (FAT-12/16/32)
@@ -72,18 +74,20 @@ Now, find the device file for your usb drive. Here, the file is `/dev/sdX`. Repl
 
 `touch /mnt/boot/grub/grub.cfg`
 
-## Example grub.cfg with Xubuntu 18.04 Live
-(skip this if you already have a working grub.cfg for the usb drive)
+## Example grub.cfg with Xubuntu 22.04 Live
+*Notes :*
+* *Skip this part if you already have a working grub.cfg for the usb drive.*
+* *Other examples can be found in this repository's grub.cfg file.*
 
 ###### Create a folder for cd images :
 
 `mkdir /mnt/isos`
 
-###### Download an Ubuntu cd image (for example: [Xubuntu 18.04 32-bit](http://cdimages.ubuntu.com/xubuntu/releases/bionic/release/xubuntu-18.04.5-desktop-i386.iso)) :
+###### Download an Ubuntu CD image (for example: [Xubuntu 22.04 64-bit](http://cdimages.ubuntu.com/xubuntu/releases/jammy/release/xubuntu-22.04.3-desktop-amd64.iso)) :
 
 *Note: make sure there is enough space on the usb drive.*
 
-`wget --directory-prefix=/mnt/isos http://cdimages.ubuntu.com/xubuntu/releases/bionic/release/xubuntu-18.04.5-desktop-i386.iso`
+`wget --directory-prefix=/mnt/isos http://cdimages.ubuntu.com/xubuntu/releases/jammy/release/xubuntu-22.04.3-desktop-amd64.iso`
 
 ###### Edit grub.cfg :
 
@@ -92,8 +96,8 @@ Now, find the device file for your usb drive. Here, the file is `/dev/sdX`. Repl
 ###### Write or paste something like this :
 
 ````
-menuentry 'Xubuntu 18.04 i386'{
-	set isofile="/isos/xubuntu-18.04.5-desktop-i386.iso"
+menuentry 'Xubuntu 22.04 amd64'{
+	set isofile="/isos/xubuntu-22.04.3-desktop-amd64.iso"
 	#search --set=root --file $isofile
 	#rmmod tpm #uncomment if grub version is 2.04 in UEFI mode (see https://bugs.launchpad.net/ubuntu/+source/grub2/+bug/1851311)
 	loopback isoloop $isofile
