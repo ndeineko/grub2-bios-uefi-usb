@@ -1,6 +1,7 @@
 # How to create a 3-in-1 bootable usb drive on Linux.
 
 A usb drive with only 1 partition to load grub2 on usb-bootable machines with `Legacy BIOS`, `64bit UEFI` or `32bit UEFI`.
+*Note: due to the maximum size of a file inside an EFI system partition, files (such as ISO disk images) of 4 GiB or larger must be placed on another partition. That second partition can be of type ext4, for instance.*
 
 ## Partition the drive and install grub2
 
