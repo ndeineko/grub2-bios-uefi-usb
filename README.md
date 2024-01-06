@@ -97,9 +97,9 @@ Now, find the device file for your usb drive. Here, the file is `/dev/sdX`. Repl
 
 ````
 menuentry 'Xubuntu 22.04 amd64'{
+	#rmmod tpm #uncomment if grub version is >=2.04 in UEFI mode (see https://bugs.launchpad.net/ubuntu/+source/grub2/+bug/1851311)
 	set isofile="/isos/xubuntu-22.04.3-desktop-amd64.iso"
-	#search --set=root --file $isofile
-	#rmmod tpm #uncomment if grub version is 2.04 in UEFI mode (see https://bugs.launchpad.net/ubuntu/+source/grub2/+bug/1851311)
+	#search --set=root --file $isofile #uncomment if the bootloader and OS files are on different partitions
 	loopback isoloop $isofile
 	linux (isoloop)/casper/vmlinuz locale=fr_FR console-setup/layoutcode=fr boot=casper iso-scan/filename=$isofile quiet --
 	initrd (isoloop)/casper/initrd
@@ -107,7 +107,6 @@ menuentry 'Xubuntu 22.04 amd64'{
 ````
 
 *Notes :*
-* *The search command on the third line is only useful if you install the bootloader and the OS files on different partitions.*
 * *Remove or change the value of the `locale` parameter to set the language of the live system.*
 * *Remove or change the value of the `console-setup/layoutcode` parameter to change the keyboard layout.*
 
