@@ -16,7 +16,7 @@ The `x86_64-efi`, `i386-pc` and `i386-efi` folders need to be present in order t
 
 ###### Install them using the package manager, for instance on Ubuntu :
 
-`sudo apt install grub-pc-bin grub-efi-ia32-bin grub-efi-amd64-bin`
+`sudo apt install --no-install-recommends --assume-yes grub-pc-bin grub-efi-ia32-bin grub-efi-amd64-bin`
 
 Now, find the device file for your usb drive. Here, the file is `/dev/sdX`. Replace `X` with the appropriate lower case letter(s) in the commands.
 
