@@ -85,11 +85,11 @@ Now, find the device file for your usb drive. Here, the file is `/dev/sdX`. Repl
 
 `mkdir /mnt/isos`
 
-###### Download an Ubuntu CD image (for example: [Xubuntu 22.04 64-bit](http://cdimages.ubuntu.com/xubuntu/releases/jammy/release/xubuntu-22.04.3-desktop-amd64.iso)) :
+###### Download an Ubuntu CD image (for example: [Xubuntu 22.04 64-bit](http://cdimages.ubuntu.com/xubuntu/releases/jammy/release/xubuntu-22.04.4-desktop-amd64.iso)) :
 
 *Note: make sure there is enough space on the usb drive.*
 
-`wget --directory-prefix=/mnt/isos http://cdimages.ubuntu.com/xubuntu/releases/jammy/release/xubuntu-22.04.3-desktop-amd64.iso`
+`wget --directory-prefix=/mnt/isos http://cdimages.ubuntu.com/xubuntu/releases/jammy/release/xubuntu-22.04.4-desktop-amd64.iso`
 
 ###### Edit grub.cfg :
 
@@ -100,7 +100,7 @@ Now, find the device file for your usb drive. Here, the file is `/dev/sdX`. Repl
 ````
 menuentry 'Xubuntu 22.04 amd64'{
 	#rmmod tpm #uncomment if grub version is >=2.04 in UEFI mode (see https://bugs.launchpad.net/ubuntu/+source/grub2/+bug/1851311)
-	set isofile="/isos/xubuntu-22.04.3-desktop-amd64.iso"
+	set isofile="/isos/xubuntu-22.04.4-desktop-amd64.iso"
 	#search --set=root --file $isofile #uncomment if the bootloader and OS files are on different partitions
 	loopback isoloop $isofile
 	linux (isoloop)/casper/vmlinuz locale=fr_FR console-setup/layoutcode=fr boot=casper iso-scan/filename=$isofile quiet --
