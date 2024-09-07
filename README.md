@@ -103,7 +103,7 @@ menuentry 'Xubuntu 22.04 amd64'{
 	set isofile="/isos/xubuntu-22.04.4-desktop-amd64.iso"
 	#search --set=root --file $isofile #uncomment if the bootloader and OS files are on different partitions
 	loopback isoloop $isofile
-	linux (isoloop)/casper/vmlinuz locale=fr_FR console-setup/layoutcode=fr boot=casper iso-scan/filename=$isofile quiet --
+	linux (isoloop)/casper/vmlinuz locale=en_US console-setup/layoutcode=us boot=casper iso-scan/filename=$isofile quiet --
 	initrd (isoloop)/casper/initrd
 }
 ````
