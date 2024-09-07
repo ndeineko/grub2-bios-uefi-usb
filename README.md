@@ -108,9 +108,9 @@ menuentry 'Xubuntu 22.04 amd64'{
 }
 ````
 
-*Notes :*
-* *Remove or change the value of the `locale` parameter to set the language of the live system.*
-* *Remove or change the value of the `console-setup/layoutcode` parameter to change the keyboard layout.*
+*Notes about kernel boot parameters :*
+* *`locale=` sets the language of the live system. Valid values include `en_US`, `pt_BR`, `zh_CN`, `fr_FR`, ...*
+* *`console-setup/layoutcode=` sets the keyboard layout. Some possible values are `us`, `br`, `cn`, `fr`, ...*
 
 ###### Save grub.cfg (in nano) and exit :
 
