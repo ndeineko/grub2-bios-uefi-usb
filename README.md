@@ -95,11 +95,11 @@ Now, find the device file for your USB drive. Here, the file is `/dev/sdX`. Repl
 
 `nano /mnt/boot/grub/grub.cfg`
 
-###### Paste (and ajust) this GRUB menu entry :
+###### Paste (and ajust) this simple GRUB config file :
 
 ````
+if [ "${grub_platform}" = "efi" ]; then rmmod tpm; fi # See https://bugs.launchpad.net/ubuntu/+source/grub2/+bug/1851311
 menuentry 'Xubuntu 22.04 amd64' {
-	#rmmod tpm # Uncomment if GRUB version is >=2.04 in UEFI mode (see https://bugs.launchpad.net/ubuntu/+source/grub2/+bug/1851311)
 	set isofile="/isos/xubuntu-22.04.4-desktop-amd64.iso"
 	#search --set=root --file $isofile # Uncomment if the bootloader and OS files are on different partitions
 	loopback isoloop $isofile
