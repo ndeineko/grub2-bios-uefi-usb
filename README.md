@@ -1,14 +1,14 @@
 # How to create a 3-in-1 bootable USB drive on Linux
 
-A USB drive with only 1 partition to load GRUB2 on USB-bootable machines with `Legacy BIOS`, `64-bit UEFI` or `32-bit UEFI`.
+A USB drive with only 1 partition* to load GRUB2 on USB-bootable machines with `Legacy BIOS`, `64-bit UEFI` or `32-bit UEFI`.
 
-*Note : due to the maximum size of a file inside an EFI system partition, files of 4 GiB or larger (such as ISO disk images) must be placed on another partition. That second partition can be of type ext4, for instance.*
+\**Due to the maximum size of a file inside an EFI system partition, files of 4 GiB or larger (such as some ISO images) must be placed on another partition. That second partition can be of type `ext4`, for instance.*
 
 ## Partition the drive and install GRUB2
 
 **Warning : the USB drive will be formatted, save your data before proceeding!**
 
-First of all, on you current installation, check if the folder `/usr/lib/grub/` exists and is not empty.
+First of all, on your current installation, check if the folder `/usr/lib/grub/` exists and is not empty.
 If it is empty or does not exist, make sure the package grub-common (or equivalent for your distribution) version 2 or higher is installed.
 Depending on the system, `/usr/lib/grub/` will contain one or more of the following folders : `x86_64-efi`, `x86_64-efi-signed`, `i386-pc`, `i386-efi`, ...
 
@@ -20,7 +20,7 @@ The `x86_64-efi`, `i386-pc` and `i386-efi` folders need to be present in order t
 
 Now, find the device file for your USB drive. Here, the file is `/dev/sdX`. Replace `X` with the appropriate lower case letter(s) in the commands.
 
-###### Make sure it's the right drive! (check the capacity and the partitions) :
+###### Make sure it's the right drive (check the capacity and the partitions) :
 
 `sudo fdisk -l /dev/sdX`
 
@@ -28,7 +28,7 @@ Now, find the device file for your USB drive. Here, the file is `/dev/sdX`. Repl
 
 `sudo fdisk /dev/sdX`
 
-###### Press the following keys (THIS WILL ERASE ALL DATA FROM THE SELECTED DRIVE!) :
+###### Press the following keys (THIS WILL ERASE ALL DATA FROM THE SELECTED DRIVE) :
 
 `o` `<enter>` # Create a new empty DOS partition table
 
@@ -42,7 +42,7 @@ Now, find the device file for your USB drive. Here, the file is `/dev/sdX`. Repl
 
 `<enter>` # Set partition end to the last possible sector (default)
 
-*Note : if fdisk (newer versions only) asks whether the partition signature should be deleted, then answer yes.*
+*Note : if you are asked whether the partition signature should be deleted, then answer yes.*
 
 `t` `<enter>` # Change partition type
 
@@ -81,11 +81,11 @@ Now, find the device file for your USB drive. Here, the file is `/dev/sdX`. Repl
 * *Skip this part if you already have a working grub.cfg for the USB drive.*
 * *Other examples can be found in this repository's [grub.cfg](grub.cfg) file.*
 
-###### Create a folder for cd images :
+###### Create a folder for ISO images :
 
 `mkdir /mnt/isos`
 
-###### Download an Ubuntu CD image (for example : [Xubuntu 22.04 64-bit](http://cdimages.ubuntu.com/xubuntu/releases/jammy/release/xubuntu-22.04.5-desktop-amd64.iso)) :
+###### Download a Xubuntu ISO image (for example : [Xubuntu 22.04 64-bit](http://cdimages.ubuntu.com/xubuntu/releases/jammy/release/xubuntu-22.04.5-desktop-amd64.iso)) :
 
 *Note : make sure there is enough space on the USB drive.*
 
@@ -109,16 +109,15 @@ menuentry 'Xubuntu 22.04 amd64' {
 ````
 
 *Notes about kernel boot parameters :*
+* *Boot parameters used in the above example are specific to Ubuntu and its variants.*
 * *`locale=` sets the language of the live system. Valid values include `en_US`, `pt_BR`, `zh_CN`, `fr_FR`, ...*
 * *`console-setup/layoutcode=` sets the keyboard layout. Some possible values are `us`, `br`, `cn`, `fr`, ...*
 
-###### Save grub.cfg (in nano) and exit :
+###### Press the following keys :
 
-`CTRL+O`
+`CTRL+O` `<enter>` # Save grub.cfg
 
-`<enter>`
-
-`CTRL+X`
+`CTRL+X` # Exit nano
 
 ## Finish
 
