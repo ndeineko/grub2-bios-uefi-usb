@@ -30,27 +30,29 @@ Now, find the device file for your USB drive. Here, the file is `/dev/sdX`. Repl
 
 ###### Press the following keys (THIS WILL ERASE ALL DATA FROM THE SELECTED DRIVE) :
 
-`o` `<enter>` # Create a new empty DOS partition table
+`o` `<enter>` to create a new empty DOS partition table.
 
-`n` `<enter>` # Create a new partition
+`n` `<enter>` to create a new partition.
 
-`p` `<enter>` # Select primary partition type
+`p` `<enter>` to select primary partition type.
 
-`1` `<enter>` # Set partition number to 1
+`1` `<enter>` to set partition number to 1.
 
-`<enter>` # Start partition at the first possible sector (default)
+`<enter>` to start partition at the first possible sector (default).
 
-`<enter>` # Set partition end to the last possible sector (default)
+`<enter>` to set partition end to the last possible sector (default).
 
 *Note : if you are asked whether the partition signature should be deleted, then answer yes.*
 
-`t` `<enter>` # Change partition type
+`t` `<enter>` to change partition type.
 
-`e` `f` `<enter>` # Set partition type to EFI (FAT-12/16/32)
+*Note : if you plan to use this drive primarily for legacy BIOS booting, then type `0` `c` instead of `e` `f` (below) for better compatibility with quirky BIOSes.*
 
-`a` `<enter>` # Enable the bootable flag on partition 1
+`e` `f` `<enter>` to set partition type to EFI (FAT-12/16/32).
 
-`w` `<enter>` # Write the partition table
+`a` `<enter>` to enable the bootable flag on partition 1.
+
+`w` `<enter>` to write the partition table.
 
 ###### Create a fresh filesystem in the newly created partition :
 
@@ -60,7 +62,7 @@ Now, find the device file for your USB drive. Here, the file is `/dev/sdX`. Repl
 
 `sudo mount -o umask=000 /dev/sdX1 /mnt`
 
-###### Write the MBR and install the GRUB files required for legacy BIOS boot on the drive :
+###### Write the MBR and install the GRUB files required for legacy BIOS booting on the drive :
 
 `sudo grub-install --no-floppy --boot-directory=/mnt/boot --target=i386-pc /dev/sdX`
 
@@ -115,9 +117,9 @@ menuentry 'Xubuntu 22.04 amd64' {
 
 ###### Press the following keys :
 
-`CTRL+O` `<enter>` # Save grub.cfg
+`CTRL+O` `<enter>` to save grub.cfg.
 
-`CTRL+X` # Exit nano
+`CTRL+X` to exit nano.
 
 ## Finish
 
