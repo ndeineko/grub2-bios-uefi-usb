@@ -78,7 +78,7 @@ Now, find the device file for your USB drive. Here, the file is `/dev/sdX`. Repl
 
 `touch /mnt/boot/grub/grub.cfg`
 
-## Example grub.cfg with Xubuntu 22.04 Live
+## Example grub.cfg with Lubuntu 24.04 Live
 *Notes :*
 * *Skip this part if you already have a working grub.cfg for the USB drive.*
 * *Other examples can be found in this repository's [grub.cfg](grub.cfg) file.*
@@ -87,11 +87,11 @@ Now, find the device file for your USB drive. Here, the file is `/dev/sdX`. Repl
 
 `mkdir /mnt/isos`
 
-###### Download a Xubuntu ISO image (for example : [Xubuntu 22.04 64-bit](http://cdimages.ubuntu.com/xubuntu/releases/jammy/release/xubuntu-22.04.5-desktop-amd64.iso)) :
+###### Download a Lubuntu ISO image (for example : [Lubuntu 24.04 64-bit](https://cdimages.ubuntu.com/lubuntu/releases/noble/release/lubuntu-24.04.4-desktop-amd64.iso)) :
 
 *Note : make sure there is enough space on the USB drive.*
 
-`wget --directory-prefix=/mnt/isos http://cdimages.ubuntu.com/xubuntu/releases/jammy/release/xubuntu-22.04.5-desktop-amd64.iso`
+`wget --directory-prefix=/mnt/isos https://cdimages.ubuntu.com/lubuntu/releases/noble/release/lubuntu-24.04.4-desktop-amd64.iso`
 
 ###### Edit grub.cfg :
 
@@ -101,11 +101,11 @@ Now, find the device file for your USB drive. Here, the file is `/dev/sdX`. Repl
 
 ````
 if [ "${grub_platform}" = "efi" ]; then rmmod tpm; fi # See https://bugs.launchpad.net/ubuntu/+source/grub2/+bug/1851311
-menuentry 'Xubuntu 22.04 amd64' {
-	set isofile="/isos/xubuntu-22.04.5-desktop-amd64.iso"
-	#search --set=root --file $isofile # Uncomment if the bootloader and OS files are on different partitions
-	loopback isoloop $isofile
-	linux (isoloop)/casper/vmlinuz locale=en_US console-setup/layoutcode=us boot=casper iso-scan/filename=$isofile quiet --
+menuentry 'Lubuntu 24.04 amd64' {
+	set iso_path="/isos/lubuntu-24.04.4-desktop-amd64.iso"
+	#search --set=root --file $iso_path # Uncomment if the bootloader and OS files are on different partitions
+	loopback isoloop $iso_path
+	linux (isoloop)/casper/vmlinuz locale=en_US console-setup/layoutcode=us boot=casper iso-scan/filename=$iso_path quiet --
 	initrd (isoloop)/casper/initrd
 }
 ````
