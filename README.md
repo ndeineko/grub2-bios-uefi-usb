@@ -30,29 +30,29 @@ Now, find the device file for your USB drive. Here, the file is `/dev/sdX`. Repl
 
 ###### Press the following keys (THIS WILL ERASE ALL DATA FROM THE SELECTED DRIVE) :
 
-`o` `<enter>` to create a new empty DOS partition table.
+`o` `Enter` to create a new empty DOS partition table.
 
-`n` `<enter>` to create a new partition.
+`n` `Enter` to create a new partition.
 
-`p` `<enter>` to select primary partition type.
+`p` `Enter` to select primary partition type.
 
-`1` `<enter>` to set partition number to 1.
+`1` `Enter` to set partition number to 1.
 
-`<enter>` to start partition at the first possible sector (default).
+`Enter` to start partition at the first possible sector (default).
 
-`<enter>` to set partition end to the last possible sector (default).
+`Enter` to set partition end to the last possible sector (default).
 
 *Note : if you are asked whether the partition signature should be deleted, then answer yes.*
 
-`t` `<enter>` to change partition type.
+`t` `Enter` to change partition type.
 
-*Note : if you plan to use this drive primarily for legacy BIOS booting, then type `0` `c` instead of `e` `f` (below) for better compatibility with quirky BIOSes.*
+*Note : if you plan to use this drive primarily for legacy BIOS booting, then press `c` instead of `e` `f` (below) for better compatibility with quirky BIOSes.*
 
-`e` `f` `<enter>` to set partition type to EFI (FAT-12/16/32).
+`e` `f` `Enter` to set partition type to EFI (FAT-12/16/32).
 
-`a` `<enter>` to enable the bootable flag on partition 1.
+`a` `Enter` to enable the bootable flag on partition 1.
 
-`w` `<enter>` to write the partition table.
+`w` `Enter` to write the partition table.
 
 ###### Create a fresh filesystem in the newly created partition :
 
@@ -117,9 +117,9 @@ menuentry 'Lubuntu 24.04 amd64' {
 
 ###### Press the following keys :
 
-`CTRL+O` `<enter>` to save grub.cfg.
+`Ctrl+O` `Enter` to save grub.cfg.
 
-`CTRL+X` to exit nano.
+`Ctrl+X` to exit nano.
 
 ## Finish
 
